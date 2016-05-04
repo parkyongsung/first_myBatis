@@ -8,8 +8,9 @@
 <h1>
 	Hello world!  
 </h1>
-resources<img src="./resources/choa.jpg">
-images<img src="./images/choa.jpg">
+
+<a href="join.jsp"> join</a>
+<a href="login.jsp"> login</a>
 
 <P>  The time on the server is ${serverTime}. </P>
 </body>

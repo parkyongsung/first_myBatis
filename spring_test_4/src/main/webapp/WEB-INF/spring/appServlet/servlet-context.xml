@@ -14,27 +14,15 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/images/**" location="/images/" />
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- <beans:bean id="member" class="com.choa.p1.Member"> 
-		<beans:property name="name" value="choa"></beans:property>
-		<beans:property name="age" value="12"></beans:property>
-	</beans:bean> -->
+	<context:component-scan base-package="com.choa.test4" />
+	<context:component-scan base-package="com.choa.util" />	
 	
-<!-- 	<beans:bean id="member" class="com.choa.util.Member">
-		<beans:property name="name" value="choa"></beans:property>
-		<beans:property name="age" value="12"></beans:property>
-	</beans:bean>
-	<beans:bean id="student" class="com.choa.util.Student">
-		<beans:property name="grade" value="3"></beans:property>
-		<beans:property name="member" ref="member"></beans:property> 
-	</beans:bean> -->
-	<context:component-scan base-package="com.choa.p1" />
-	<context:component-scan base-package="com.choa.control" />	
 	
 </beans:beans>
