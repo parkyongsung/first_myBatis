@@ -16,7 +16,6 @@ public class NoticeDAOimpl implements NoticeDAO {
 	
 	@Override
 	public void write(NoticeDTO noticeDTO) throws Exception {
-		sqlSession.
 	}
 
 	@Override
