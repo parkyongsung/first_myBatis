@@ -2,6 +2,9 @@ package com.choa.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DBConnector {
 	private String driver;
@@ -27,6 +30,27 @@ public class DBConnector {
 		
 	}
 	
+	
+	/*public void disConnect(PreparedStatement st, Connection con){
+		
+		try {
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void disConnect(PreparedStatement st, Connection con, ResultSet rs){
+		try {
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}*/
 	
 	
 	public String getDriver() {

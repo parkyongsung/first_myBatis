@@ -9,9 +9,6 @@
 	Hello world!  
 </h1>
 
-<a href="member/joinform.do"> join</a>
-<a href="member/loginform.do"> login</a>
- 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

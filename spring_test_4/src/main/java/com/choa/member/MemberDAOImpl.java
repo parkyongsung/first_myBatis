@@ -5,27 +5,46 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.choa.util.DBConnector;
 
-
+@Repository
 public class MemberDAOImpl implements MemberDAO {
-
-	@Override
-	public int join(MemberDTO memberDTO) {
-		DBConnector dbc = new DBConnector();
-		Connection con = dbc.getConnect();
-		PreparedStatement st = null;
-		String sql = "insert into member where (member_seq,?,?)";
-		int result=0;
+	
+	@Autowired
+	private DataSource dataSource;
+	
+	public void test(){
 		try {
-			st=con.prepareStatement(sql);
-			st.setString(1, memberDTO.getId());
-			st.setString(2, memberDTO.getPw());
-			result=st.executeUpdate();
-			
+			System.out.println(dataSource.getConnection());
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public int join(MemberDTO memberDTO) {
+		Connection con;
+		int result=0;
+		try {
+			con = dataSource.getConnection();
+			PreparedStatement st = null;
+			String sql = "insert into member2 where (member2_seq,?,?,?)";
+			st = con.prepareStatement(sql);
+			st.setString(1, memberDTO.getId());
+			st.setString(2, memberDTO.getPw());
+			st.setString(3, memberDTO.getName());
+			result=st.executeUpdate();
+			}catch (SQLException e1) {
+			e1.printStackTrace();
+			}finally {
+				
+			}
 		return result;
 	}
 
@@ -35,7 +54,7 @@ public class MemberDAOImpl implements MemberDAO {
 		Connection con = dbc.getConnect();
 		PreparedStatement st = null;
 		ResultSet rs =null;
-		String sql = "select * from member where id=? and pw=?";
+		String sql = "select * from member2 where id=? and pw=?";
 		try {
 			st=con.prepareStatement(sql);
 			st.setString(1, memberDTO.getId());
@@ -47,6 +66,14 @@ public class MemberDAOImpl implements MemberDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				st.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return memberDTO;
 	}
