@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<!-- namespace="com.choa.notice.noticeDAO" 로 쓰는사람도 있음  -->
+	
+	<mapper namespace="NoticeMapper">
+		<select id="view" resultType="com.choa.notice.NoticeDTO">
+			<!--# 과 $ 의 차이 prepare고 아니고 보안문제  -->
+			<![CDATA[select * from notice_board where num=#{num}]]>
+		</select>
+		<!-- void 이므로 resultType 이 없음 
+			굳이 주려면	resultType="java.lang.Integer"-->
+		<insert id="write">
+			<![CDATA[insert into notice_board values(notice_seq.nextVal,#{writer},#{title},#{contents},0,sysdate);]]>
+		</insert>
+		
+		<!-- java.util.List<>이거 아니야~ -->
+		<select id="" resultType="">
+		
+		</select>
+	
+	</mapper>

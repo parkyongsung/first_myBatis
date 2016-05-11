@@ -1,4 +1,4 @@
-package com.choa.noticeDTO;
+package com.choa.notice;
 
 import java.util.List;
 
